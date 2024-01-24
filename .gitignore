@@ -50,3 +50,4 @@ package.nls.*.json
 l10n/
 venv/
 /workspaces/bikeshare_project/venv
+*.pkl
