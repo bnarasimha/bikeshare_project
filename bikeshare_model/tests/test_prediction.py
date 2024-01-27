@@ -17,7 +17,7 @@ from bikeshare_model.predict import make_prediction
 
 def test_make_prediction(sample_input_data):
     # Given
-    expected_no_predictions = 179
+    #expected_no_predictions = 179
 
     # When
     result = make_prediction(input_data=sample_input_data)
@@ -25,10 +25,25 @@ def test_make_prediction(sample_input_data):
     # Then
     predictions = result.get("predictions")
     assert isinstance(predictions, np.ndarray)
-    # assert isinstance(predictions[0], np.int64)
     assert result.get("errors") is None
-    # assert len(predictions) == expected_no_predictions
+
+    #print(predictions)
+        # for i,x in enumerate(predictions):
+        #     assert(abs(x - sample_input_data["cnt"][i+1]) < 1)
+
+    #assert(abs(predictions[0] - sample_input_data["cnt"][0]) < 1)
+
+    #print(predictions)
+
+    i = 0
+    for index, row in sample_input_data.iterrows():
+        assert(abs(row["cnt"] - predictions[i]) < 300)
+        print(i)
+        i = i + 1 
+
+
+
+    #assert(abs(predictions - sample_input_data["cnt"]) < 1)
+    #assert len(predictions) == expected_no_predictions
     # _predictions = list(predictions)
-    # y_true = sample_input_data["Survived"]
-    # accuracy = accuracy_score(_predictions, y_true)
-    # assert accuracy > 0.7
+    #y_true = sample_input_data["cnt"]

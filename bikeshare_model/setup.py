@@ -1,7 +1,5 @@
 # python setup.py sdist bdist_wheel
-import os
-from setuptools import setup, find_packages
-
+from setuptools import setup
 
 setup(
     name="bikesharing",

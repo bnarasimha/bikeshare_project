@@ -6,7 +6,6 @@ parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
 import typing as t
-from pathlib import Path
 
 import joblib
 import pandas as pd

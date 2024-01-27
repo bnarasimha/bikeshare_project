@@ -6,7 +6,6 @@ file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
 
-from pathlib import Path
 from typing import Dict, List
 
 from pydantic import BaseModel
@@ -86,7 +85,7 @@ def find_config_file() -> Path:
     if CONFIG_FILE_PATH.is_file():
         return CONFIG_FILE_PATH
 
-    raise Exception(f"Config not found at {CONFIG_FILE_PATH!r}")
+    raise KeyError(f"Config not found at {CONFIG_FILE_PATH!r}")
 
 
 def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
@@ -96,7 +95,7 @@ def fetch_config_from_yaml(cfg_path: Path = None) -> YAML:
         cfg_path = find_config_file()
 
     if cfg_path:
-        with open(cfg_path, "r") as conf_file:
+        with open(cfg_path, "r", encoding="utf-8") as conf_file:
             parsed_config = load(conf_file.read())
             return parsed_config
 

@@ -1,8 +1,4 @@
-from typing import List
-import sys
 import pandas as pd
-import numpy as np
-
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import OneHotEncoder
 
@@ -20,7 +16,7 @@ class WeekdayImputer(BaseEstimator, TransformerMixin):
         self.variable = variable
         self.date_var = date_var
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, _: pd.DataFrame, __: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         return self
 
@@ -49,8 +45,9 @@ class WeathersitImputer(BaseEstimator, TransformerMixin):
             raise ValueError("variable name should be a string")
 
         self.variable = variable
+        self.fill_value = None
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, X: pd.DataFrame, _: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         X = X.copy()
         self.fill_value = X[self.variable].mode()[0]
@@ -78,7 +75,7 @@ class Mapper(BaseEstimator, TransformerMixin):
         self.variable = variable
         self.mappings = mappings
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, _: pd.DataFrame, __: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         return self
 
@@ -102,8 +99,10 @@ class OutlierHandler(BaseEstimator, TransformerMixin):
             raise ValueError("variable name should be a string")
 
         self.variable = variable
+        self.lower_bound = None
+        self.upper_bound = None
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, X: pd.DataFrame, _: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         X = X.copy()
         q1 = X.describe()[self.variable].loc["25%"]
@@ -136,8 +135,9 @@ class WeekdayOneHotEncoder(BaseEstimator, TransformerMixin):
 
         self.variable = variable
         self.encoder = OneHotEncoder(sparse_output=False)
+        self.encoded_features_names = None
 
-    def fit(self, X: pd.DataFrame, y: pd.Series = None):
+    def fit(self, X: pd.DataFrame, _: pd.Series = None):
         # we need the fit statement to accomodate the sklearn pipeline
         X = X.copy()
         self.encoder.fit(X[[self.variable]])

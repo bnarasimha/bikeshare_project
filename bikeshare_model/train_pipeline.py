@@ -28,6 +28,8 @@ def run_training() -> None:
     )
 
     # Pipeline fitting
+    print(f"DEBUG-1: train_pipeline.py - {X_train.shape},{y_train.shape}")
+    
     bikeshare_pipe.fit(X_train, y_train)
 
     # persist trained model
