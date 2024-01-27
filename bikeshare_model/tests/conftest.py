@@ -1,5 +1,6 @@
 import sys
 from pathlib import Path
+
 file = Path(__file__).resolve()
 parent, root = file.parent, file.parents[1]
 sys.path.append(str(root))
@@ -9,6 +10,7 @@ from sklearn.model_selection import train_test_split
 from bikeshare_model.config.core import config
 from bikeshare_model.processing.data_manager import _load_raw_dataset
 from bikeshare_model.processing.features import WeekdayImputer
+
 
 @pytest.fixture
 def sample_input_data():
