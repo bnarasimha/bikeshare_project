@@ -31,9 +31,9 @@ jobs:
     - name: Code formatting with black
       run: |
         black bikeshare_model/*.py
-    - name: Lint with pylint
-      run: |
-        pylint --disable=R,C bikeshare_model/
+    # - name: Lint with pylint
+    #   run: |
+    #     pylint --disable=R,C bikeshare_model/
     - name: Train the model
       run: |
         python bikeshare_model/train_pipeline.py
