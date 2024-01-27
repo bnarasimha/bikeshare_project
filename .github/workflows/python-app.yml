@@ -30,7 +30,7 @@ jobs:
         if [ -f requirements/requirements.txt ]; then pip install -r requirements/requirements.txt; fi
     - name: Code formatting with black
       run: |
-        black *.py
+        black bikeshare_model/*.py
     - name: Lint with pylint
       run: |
         pylint --disable=R,C bikeshare_model/

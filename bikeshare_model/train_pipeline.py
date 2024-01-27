@@ -29,7 +29,7 @@ def run_training() -> None:
 
     # Pipeline fitting
     bikeshare_pipe.fit(X_train, y_train)
-    
+
     # persist trained model
     save_pipeline(pipeline_to_persist=bikeshare_pipe)
 
